@@ -44,4 +44,42 @@ const bookStore = {
 }
 
 // Write your code here!
+// Select the DOM element with id of "header"
+const bookStoreTitle = document.querySelector('#header');
 
+//  Change textContent to match the bookstore name
+bookStoreTitle.textContent = bookStore.name;
+
+// --- Step 3: Book Elements ---
+
+// Select the ul element where we will append the books
+// Note: Using 'book-list' to match your HTML ID exactly
+const bookList = document.querySelector('#book-list');
+
+// Optional: Remove the example "delete-this" li before adding new ones
+const exampleLi = document.querySelector('#delete-this');
+if (exampleLi) exampleLi.remove();
+
+// Loop through every book in the array
+bookStore.books.forEach(book => {
+    
+    //  Create elements for each book
+    const bookContainer = document.createElement('li'); // li element
+    const bookTitle = document.createElement('h3');     // h3 element
+    const bookAuthor = document.createElement('p');      // p element
+    const bookImage = document.createElement('img');    // img element
+
+    //  Set the content to match the book object
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookImage.src = book.imageUrl;
+    bookImage.alt = book.title; // Best practice for accessibility
+
+    // Append book elements to bookContainer (the li)
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    // Append bookContainer to bookList (the ul)
+    bookList.appendChild(bookContainer);
+});
